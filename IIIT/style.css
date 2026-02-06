@@ -1,0 +1,286 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  text-align: center;
+  color: #0f172a;
+  overflow-x: hidden;
+
+  /* Animated gradient background */
+  background: linear-gradient(
+    -45deg,
+    #e0f2fe,
+    #bae6fd,
+    #f0f9ff,
+    #dbeafe,
+    #ecfeff
+  );
+  background-size: 500% 500%;
+  animation: bgMove 20s ease infinite;
+}
+
+/* =========================
+   SOFT DECORATIVE ELEMENTS
+========================= */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.22;
+  filter: blur(40px);
+  animation: float 14s ease-in-out infinite;
+}
+
+body::before {
+  top: -120px;
+  left: -120px;
+  background: radial-gradient(circle, #f9a8d4, #fb7185);
+}
+
+body::after {
+  bottom: -120px;
+  right: -120px;
+  background: radial-gradient(circle, #93c5fd, #22d3ee);
+  animation-delay: 7s;
+}
+
+/* Small floating dots (flowers effect substitute – light) */
+.decor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  animation: drift 18s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); opacity: 0; }
+  50% { opacity: 0.6; }
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(30px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   SCREEN CONTROL
+========================= */
+.screen {
+  display: none;
+  padding: 42px 20px;
+  min-height: 100vh;
+}
+
+.screen.active {
+  display: block;
+  animation: fadeIn 0.8s ease;
+}
+
+/* =========================
+   TITLES & TEXT
+========================= */
+.title {
+  font-size: 44px;
+  font-weight: 800;
+  color: #0c4a6e;
+  margin-bottom: 10px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #334155;
+  margin-bottom: 28px;
+}
+
+.centered {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+/* =========================
+   BUTTONS (PREMIUM)
+========================= */
+button {
+  padding: 14px 30px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 32px;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+
+  box-shadow: 0 8px 18px rgba(37,99,235,0.35);
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 28px rgba(37,99,235,0.45);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   LANGUAGE BUTTON AREA
+========================= */
+.language-box button {
+  min-width: 190px;
+}
+
+/* =========================
+   CARD DESIGN (GLASS UI)
+========================= */
+.card {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  margin: 30px auto;
+  width: 360px;
+  max-width: 94%;
+  border-radius: 22px;
+
+  box-shadow:
+    0 18px 35px rgba(0,0,0,0.15),
+    inset 0 0 0 1px rgba(255,255,255,0.4);
+
+  animation: popIn 0.6s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* =========================
+   ALPHABET DISPLAY
+========================= */
+#letter {
+  font-size: 96px;
+  color: #1e40af;
+  margin: 12px 0;
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+#word {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+#letterImg {
+  width: 190px;
+  height: 190px;
+  object-fit: contain;
+  margin: 14px auto;
+  display: block;
+}
+
+/* =========================
+   QUIZ & GAME
+========================= */
+#quizOptions button,
+#gameOptions button {
+  display: block;
+  width: 260px;
+  margin: 12px auto;
+}
+
+/* =========================
+   PROGRESS BAR (IMPROVED)
+========================= */
+.progress {
+  width: 88%;
+  height: 14px;
+  background: #e5e7eb;
+  border-radius: 25px;
+  margin: 22px auto 30px;
+  overflow: hidden;
+}
+
+#progressBar,
+#quizProgress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  transition: width 0.6s ease;
+}
+
+/* =========================
+   RESULTS / FEEDBACK
+========================= */
+#quizResult,
+#gameResult {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 14px;
+}
+
+/* =========================
+   FOOTER NOTE
+========================= */
+.footer-note {
+  position: fixed;
+  bottom: 8px;
+  width: 100%;
+  font-size: 14px;
+  color: #475569;
+  opacity: 0.8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  .title {
+    font-size: 34px;
+  }
+
+  #letter {
+    font-size: 72px;
+  }
+
+  .card {
+    width: 96%;
+  }
+}
